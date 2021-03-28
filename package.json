@@ -1,0 +1,24 @@
+{
+  "name": "functional-js-dahl",
+  "version": "1.0.0",
+  "description": "functional js assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IIC3585-2021/functional-js-dahl.git"
+  },
+  "author": "dahl-group",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IIC3585-2021/functional-js-dahl/issues"
+  },
+  "homepage": "https://github.com/IIC3585-2021/functional-js-dahl#readme",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "prompt-sync": "^4.2.0"
+  }
+}
