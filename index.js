@@ -1,8 +1,6 @@
 const prompt = require('prompt-sync')({sigint: true});
 const _ = require('lodash');
 
-const specialCases = {'SB': 25, 'DB': 50}
-
 /**
  * Receive a player and their result and update score. 
  * @param {String} playerName 
