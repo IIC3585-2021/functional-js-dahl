@@ -29,8 +29,9 @@ let players = JSON.parse(prompt('Inserte jugadores en el formato ["Jugador1", "J
 console.log(`Juego inicializado con jugadores: ${players.join(" ")}`)
 
 
+const initializedPlayers = play_game(players)
+
 while (!winner) {
-  const initializedPlayers = play_game(players)
   for (let player in initializedPlayers) {
     let play = JSON.parse(prompt(`Ingrese jugada de ${player}`))
     const result = new_play(player, initializedPlayers[player], play)
