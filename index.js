@@ -2,6 +2,29 @@ const prompt = require('prompt-sync')({sigint: true});
 const _ = require('lodash');
 
 /**
+ * 
+ * @param {Array} dartsResults 
+ * @returns checked results 
+ */
+const checkResults = (dartsResults) => dartsResults.map(item => item === 'SB' ? 25 : item === 'DB' ? 50 : item === null ? 0 : item[0]*item[1])
+
+/**
+ * 
+ * @param {Array} checkedResults 
+ * @returns results sum 
+ */
+const sumResults = (checkedResults) => checkedResults.reduce((x,y)=> x+y)
+
+/**
+ * Receive functions and make a functions composition 
+ * @param {Function} functions 
+ * @returns {Function} functions pipeline 
+ */
+const pipe = functions => data => functions.reduce( (value, func) => func(value), data)
+
+const resultsPipeline = pipe([checkResults, sumResults])
+
+/**
  * Receive a player and their result and update score. 
  * @param {String} playerName 
  * @param {Number} currentScore 
@@ -9,9 +32,8 @@ const _ = require('lodash');
  * @returns {Number} name and updated player score
  */
 const new_play = (playerName, currentScore, dartsResults) => {
-  const updatedResults = dartsResults.map((item) => item === 'SB' ? 25 : item === 'DB' ? 50 : item === null ? 0 : item[0]*item[1])
-  const sumUpdatedResults = updatedResults.reduce((x,y)=> x+y)
-  const updatedScore = Math.abs(currentScore - sumUpdatedResults)//currentScore - updatedResults 
+  const updatedResults = resultsPipeline(dartsResults)
+  const updatedScore = Math.abs(currentScore - updatedResults) //currentScore - updatedResults 
   console.log(`${playerName} quedó con ${updatedScore}`)
   return updatedScore
 }
