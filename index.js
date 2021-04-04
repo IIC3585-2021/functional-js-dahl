@@ -1,12 +1,21 @@
 const prompt = require('prompt-sync')({sigint: true});
 const _ = require('lodash');
+/**
+ * check darts results 
+ * @param {Array | String} item 
+ * @returns 0, 25, 50 or number's multiplication 
+ */
+const cleanResults = (item) => (item === 'SB' ? 25 : 
+                                item === 'DB' ? 50 : 
+                                item === null ? 0 : 
+                                item[0] * item[1]) 
 
 /**
  * 
  * @param {Array} dartsResults 
  * @returns checked results 
  */
-const checkResults = (dartsResults) => dartsResults.map(item => item === 'SB' ? 25 : item === 'DB' ? 50 : item === null ? 0 : item[0]*item[1])
+const checkResults = (dartsResults) => dartsResults.map(item => cleanResults(item))
 
 /**
  * 
@@ -43,7 +52,9 @@ const new_play = (playerName, currentScore, dartsResults) => {
  * @param {Array} players 
  * @returns {Object} Object with names and initial scores.
  */
-const play_game = (players) => _.transform(players, (result, player)=>(result[player] = 501)) 
+const play_game = (players) => _.transform(players, 
+                                           (result, player) => (
+                                              result[player] = 501)) 
 
 let winner = false;
  
