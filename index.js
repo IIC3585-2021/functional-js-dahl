@@ -72,6 +72,7 @@ while (!winner) {
     if(result === 0 ) {
       console.log(`${player} quedó en 0 puntos y gana el juego`)
       winner=true
+      break
     }
   } 
 }
